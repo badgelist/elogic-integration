@@ -12,6 +12,10 @@ ruby '2.5.1'
   gem 'bootsnap', '>= 1.1.0', require: false
   gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+#=== STORAGE ===#
+
+  gem 'pg'
+  
 #=== FRONT-END ===#
 
   gem 'sass-rails', '~> 5.0'
@@ -27,7 +31,6 @@ ruby '2.5.1'
   end
 
   group :development do
-    gem 'sqlite3'
     gem 'web-console', '>= 3.3.0'
     gem 'better_errors'
     gem 'listen', '>= 3.0.5', '< 3.2'
@@ -39,10 +42,4 @@ ruby '2.5.1'
     gem 'capybara', '>= 2.15', '< 4.0'
     gem 'selenium-webdriver'
     gem 'chromedriver-helper'
-  end
-
-#=== PRODUCTION ===#
-
-  group :production do
-    gem 'pg'
   end
