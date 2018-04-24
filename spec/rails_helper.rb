@@ -10,6 +10,7 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'capybara/rspec'
 require 'shoulda/matchers'
+require 'factory_bot'
 
 # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -28,6 +29,8 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
+
+  config.include FactoryBot::Syntax::Methods
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

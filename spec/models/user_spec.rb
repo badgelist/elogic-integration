@@ -6,11 +6,12 @@ RSpec.describe User, type: :model do
     expect(build(:user)).to be_valid
   end
 
-  let(:user) { build(:factory_you_built) }
+  let(:user) { build(:user) }
 
   describe 'ActiveRecord fields and associations' do
 
-    it { expect(user).to have_attributes :name, :email, :password }
+    it { expect(user).to have_attribute :name }
+    it { expect(user).to have_attribute :email }
 
   end
 
