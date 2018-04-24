@@ -13,22 +13,22 @@ app:
 
   # makes the app container aware of the DB container
   links:
-    - db
+    - mysql
 
   # expose the port we configured Unicorn to bind to
   expose:
     - "3000"
 
 # service configuration for our database
-db:
+mysql:
  
-  # use the preferred version of the official Postgres image
-  # see https://hub.docker.com/_/postgres/
-  image: postgres:9.4.5
+  image: mysql:5.6
  
+  env_file: .mysql-env
+
   # persist the database between containers by storing it in a volume
   volumes:
-    - elogic-integration-postgres:/var/lib/postgresql/data
+    - elogic-integration-mysql:/var/lib/mysql
 
 # service configuration for our web server
 web:

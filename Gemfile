@@ -14,7 +14,7 @@ ruby '2.5.1'
 
 #=== STORAGE ===#
 
-  gem 'pg'
+  gem 'mysql2'
   
 #=== FRONT-END ===#
 

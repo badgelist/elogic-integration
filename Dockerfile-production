@@ -4,8 +4,9 @@ FROM ruby:2.5.1
 # Install essential Linux packages
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev mysql-client nodejs yarn
 
-# Define where our application will live inside the image
+# Define rails env vars
 ENV RAILS_ROOT /home/app
+ENV RAILS_ENV production
 
 # Create application home. App server will need the pids dir so just create everything in one shot
 RUN mkdir -p $RAILS_ROOT/tmp/pids
@@ -28,6 +29,11 @@ RUN bundle install
 
 # Copy the Rails application into place
 COPY . .
+
+# compile assets!
+RUN bundle exec rake assets:precompile
+
+EXPOSE 3000
 
 # Run the puma rails server
 CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]

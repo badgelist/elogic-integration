@@ -47,3 +47,4 @@ bower.json
 .DS_Store
 *.sublime-*
 docker-compose.override.yml
+*-secrets.yml
