@@ -197,3 +197,9 @@ You should now be able to go to the IP address in your web browser and see the U
 **FIXME**
 
 Need to add instructions for initial app setup.
+
+## Testing ##
+
+**Prerequisites:**
+
+- `brew cask install chromedriver`

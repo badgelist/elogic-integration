@@ -28,6 +28,8 @@ ruby '2.5.1'
   group :development, :test do
     gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
     gem 'capistrano-rails'
+    gem 'rspec-rails'
+    gem 'database_cleaner'
   end
 
   group :development do
@@ -42,4 +44,8 @@ ruby '2.5.1'
     gem 'capybara', '>= 2.15', '< 4.0'
     gem 'selenium-webdriver'
     gem 'chromedriver-helper'
+    gem 'faker'
+    gem 'factory_bot_rails'
+    gem 'shoulda-matchers'
+    gem 'simplecov', require: false
   end
