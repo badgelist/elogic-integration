@@ -1,6 +1,6 @@
 # eLogic Integration Server #
 
-This application is a work-in-progress. It is a dockerized Rails app with a Postgres database.
+This application is a work-in-progress. It is a dockerized Rails app with a MySQL database.
 
 ## Docker commands ##
 
@@ -105,3 +105,95 @@ spec:
 ```
 
 The above example scales when the cpu utilization tops 70%. To add this just run `kubectl create -f kube/web-autoscaler.yml`.
+
+## Initial Setup Process ##
+
+This is a walk through of the initial process of copying this code, modifying it and then getting it to run on your own cloud instance. It assumes you will be running on Google Kubernetes Engine, but the same basic instructions should work for any Kubernetes-based system.
+
+### Google Prep ###
+
+To begin you'll need to make sure you have a Google Cloud project with billing enabled. Open the [Google Cloud Console](https://console.cloud.google.com/) and create a project (remember the id), then enable billing for it. Then you'll need to install the Google Cloud SDK and configure the CLI.
+
+Before moving on you'll want to fork this repo and replace the project id `badge-list` with whatever your own Google Cloud Project Id is. The best way is to do a full text search for `badge-list` across all of the files in the repo, but it should only appear in a couple of places:
+- `kube/web-deployment.yml`
+- `scripts/deploy.sh`
+
+Then you'll want to create a cluster to house all of the pieces of the integration:
+```
+gcloud container clusters create elogic-integration \
+    --enable-cloud-logging \
+    --enable-cloud-monitoring \
+    --machine-type n1-standard-2 \
+    --num-nodes 1
+```
+
+Then run `gcloud container clusters get-credentials rails` to give kubectl the credentials it needs to begin deploying containers. Afterwards you should be able to successfully run `kubectl cluster-info`.
+
+Now create a separate database pool.
+```
+gcloud container node-pools create db-pool \
+    --machine-type=n1-highmem-2 \
+    --num-nodes=1 \
+    --cluster=rails
+```
+
+That's it for the basic setup. Next you'll move on to creating the actual components of the integration.
+
+### MySQL ###
+
+First create a secure password using a password generator and then encode it in base 64. Then generate a random secret base key and encode that in base 64 as well. Record the unencoded password, the encoded password and the encoded secret key somewhere safe.
+
+```
+% echo -n 'generate a secure password and put it here' | base64 
+Z2VuZXJhdGUgYSBzZWN1cmUgcGFzc3dvcmQgYW5kIHB1dCBpdCBoZXJl
+% docker-compose run --rm app rake secret | base64
+YzcwZTYyODdhYmIzNjE1NzI4MjkwYTA1ZjNmZDlkM2NlYWU2NzIzNGY0ZDFlYTc2OTQyODFkOTM0MTczNWEwYzA0NWEzYjAxZGVkMDEyYjBhODQxNzhmNDAxMjY2OTA2ZDJjMDM2ZTY3MWQ1MzZkNDZhZDhiZGVlOGEwYjQ5ODY=
+```
+
+Then create a file named `app-secrets.yml` in the `./kube` folder and the contents should be the like the following (but with your own values inserted):
+
+```
+# ./kube/app-secrets.yml
+apiVersion: v1
+data:
+  mysql_password: Z2VuZXJhdGUgYSBzZWN1cmUgcGFzc3dvcmQgYW5kIHB1dCBpdCBoZXJl
+  secret_key_base: YzcwZTYyODdhYmIzNjE1NzI4MjkwYTA1ZjNmZDlkM2NlYWU2NzIzNGY0ZDFlYTc2OTQyODFkOTM0MTczNWEwYzA0NWEzYjAxZGVkMDEyYjBhODQxNzhmNDAxMjY2OTA2ZDJjMDM2ZTY3MWQ1MzZkNDZhZDhiZGVlOGEwYjQ5ODY=
+kind: Secret
+type: Opaque
+metadata:
+  name: app-secrets
+```
+
+Use `kubectl create -f kube/app-secrets.yml` to create the secret object in kubernetes master. After this is successful, you **delete this file**. (If you commit this file, you will be exposing your credentials to whoever has access to your source control. **Base64 is not encryption**, you can decode it just as easily as you encoded it). You can edit the file later with `kubectl edit secret/app-secrets`. Your editor will open and you can edit the details and send the updates straight to kubernetes master in the cluster.
+
+Define the storage class with `kubectl create -f kube/ssd-storage-class.yml`, then define the volume claim with `kubectl create -f kube/mysql-volume-claim.yml`.
+
+Now you can create the mysql deployment itself with `kubectl create -f kube/mysql-deployment.yml`. 
+
+Run `kubectl get pods` to see the status of your newly created pods. It might take a minute or two for the pod to go to status `Running`. If it takes to long try `kubectl describe pod [pod_name]` using the pod name from the get pods command.
+
+Once that's done you can create the mysql service (which exposes mysql to the rest of the cluster) using `kubectl create -f kube/mysql-service.yml`. It should now be returned when you run `kubectl get services`.
+
+If you’d like to connect to your mysql pod from your local machine, try `kubectl port-forward [pod_name] 3306:3306` and connect to localhost:3306 with a MySQL client. The pod name will be available via `kubectl get pods`.
+
+### Rails App ###
+
+Follow the instructions in the Deployment section above to build the docker image, push it to Google and then use the deployment script to deploy it.
+
+### Load Balancer / Public IP Address ###
+
+Now you need to expose the Rails app to the public internet by registering a public IP address and connecting a load balancer between the IP address and the app node(s).
+
+First create a public IP address using `gcloud compute addresses create web-external — region=us-central1`, but change the region to be the same as that in which you've created all of the other components. You should then be able to get the ip address details using `gcloud compute addresses describe web-external`.
+
+Now take the IP address and put it into the `./kube/web-service.yml` file. (Replace the existing value for `loadBalancerIP`.)
+
+Now you can run `kubectl -f kube/web-service.yml` to create the load balancer.
+
+You should now be able to go to the IP address in your web browser and see the UI!
+
+### App Setup ###
+
+**FIXME**
+
+Need to add instructions for initial app setup.
