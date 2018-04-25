@@ -203,3 +203,14 @@ Need to add instructions for initial app setup.
 **Prerequisites:**
 
 - `brew cask install chromedriver`
+
+## Environment Variables ##
+
+```
+app_name=eLogic Integration Server
+root_domain=abc.yourdomain.com # dev value = localhost
+root_url=https://abc.yourdomain.com # dev value = http://localhost
+MYSQL_PASSWORD=database_root_password
+from_email=knowledgestreem@gmail.com
+gmail_password=gmail_app_password # set this to use gmail smtp, notes: here >> http://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration-for-gmail
+```

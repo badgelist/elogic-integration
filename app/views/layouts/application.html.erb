@@ -1,15 +1,56 @@
 <!DOCTYPE html>
 <html>
+
+<%
+  
+  #=== PRIMARY APP LAYOUT ===#
+  #------------------------------
+  # This is used for all pages.
+  #
+  # Parameters (w/ Default Value):
+  # - window_title (Optional): Partial title of window >> "#{title} - eLogic Integration Server"
+  # - full_window_title (Optional): Full title of window
+  #
+  #------------------------------  
+
+%>
+
   <head>
-    <title>ElogicIntegration</title>
+
+    <% #=== PAGE TITLE, APP ICON & BASE ===# %>
+    <title><%= @document_title %></title>
+    <link rel="icon" type="image/png" href="<%= image_path('logo-32.png') %>"/>
+    
+    <% #=== METADATA ===# %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <% #=== SAFARI WEB APP SETTINGS ===# %>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="eLogic Integration Server">
+    <link rel="apple-touch-icon" href="<%= image_path('logo.png') %>">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#FF9800">
+
+    <% #=== FONTS & ICONS ===# %>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
+    <% #=== STYLES ===# %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "controllers/#{params[:controller]}", media: 'all', 'data-turbolinks-track': 'reload' %>
+    
+    <% #=== JAVASCRIPT ===# %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
+    
     <%= yield %>
+
   </body>
+
 </html>
