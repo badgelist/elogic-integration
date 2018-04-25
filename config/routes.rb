@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   #=== CLEARANCE RELATED ROUTES ===#
 
   constraints Clearance::Constraints::SignedIn.new do
-    resources :users, controller: 'clearance/users', only: [:create, :new] do
+    resources :users, controller: 'users', only: [:create, :new, :index, :edit, :update, :destroy] do
       resource :password,
         controller: 'clearance/passwords',
         only: [:create, :edit, :update]

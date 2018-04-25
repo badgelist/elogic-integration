@@ -10,6 +10,7 @@
   # Parameters (w/ Default Value):
   # - window_title (Optional): Partial title of window >> "#{title} - eLogic Integration Server"
   # - full_window_title (Optional): Full title of window
+  # - wrap_with_container: Set to any non-blank value in order to wrap the page content in the application container
   #
   #------------------------------  
 
@@ -70,7 +71,30 @@
       </div>
     <% end %>
     
-    <%= yield %>
+    <% if content_for?(:wrap_with_container) %>
+      <div id="container">
+        <div id="nav">
+          <div class="icon">
+            <a href="/"><%= image_tag 'icon.png' %></a>
+          </div>
+          <div class="link">
+            <% if signed_in? %>
+              <%= link_to "<i class='zmdi zmdi-close-circle-o'></i> Sign out".html_safe, sign_out_path, method: :delete %>
+            <% else %>
+              <%= link_to "<i class='zmdi zmdi-sign-in'></i> Sign in".html_safe, sign_in_path %>
+            <% end %>
+          </div>
+        </div>
+        
+        <div id="content">
+          <%= yield %>
+        </div>
+      </div>
+    <% else %>
+      <div id="content">
+        <%= yield %>
+      </div>
+    <% end %>
 
   </body>
 

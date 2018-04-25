@@ -1,15 +1,28 @@
-<div id="clearance" class="sign-up">
-  <h2><%= t(".title") %></h2>
+<% 
+  provide(:window_title, "Create New User") 
+  provide(:wrap_with_container, true) 
+%>
 
-  <%= form_for @user do |form| %>
-    <%= render partial: '/users/form', object: form %>
+<div class="panel user wide">
 
-    <div class="submit-field">
-      <%= form.submit %>
+  <div class="header">
+    <div class="title">
+      <i class="zmdi zmdi-account-add"></i>
+      Create New Admin User
     </div>
+  </div>
+  
+  <div class="body">
+    <%= form_for @user do |form| %>
 
-    <div class="other-links">
-      <%= link_to t(".sign_in"), sign_in_path %>
-    </div>
-  <% end %>
+      <%= render partial: '/users/form', object: form %>
+
+      <div class="footer">
+        <%= link_to 'Cancel', users_path, class: 'button large borderless transparent' %>
+        <%= form.submit value: 'Save', class: 'button large transparent' %>
+      </div>
+
+    <% end %>
+  </div>
+
 </div>

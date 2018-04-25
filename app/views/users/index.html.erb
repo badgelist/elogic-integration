@@ -1,0 +1,41 @@
+<% 
+  provide(:window_title, 'Admin Users')
+  provide(:wrap_with_container, true)
+%>
+
+<div id="page-header">
+  <h1>
+    <i class="zmdi zmdi-assignment-account"></i>
+    Manage Server Admin Users
+  </h1>
+  <div class="action">
+    <a href="<%= new_user_path %>" class="button deep-orange">
+      <i class="zmdi zmdi-plus"></i>
+      New User
+    </a>
+  </div>
+</div>
+
+<ul class="record-list users">
+  <% @users.each do |user| %>
+    <li class="record-item user">
+      <div class="fields">
+        <div class="field image">
+          <img src="<%= user.gravatar_url(100) %>" class="round">
+        </div>
+        <div class="field name">
+          <strong><%= user.name %></strong>
+        </div>
+        <div class="field email">
+          <%= user.email %>
+        </div>
+      </div>
+      <div class="actions">
+        <a href="<%= edit_user_path(user) %>" class="button transparent">
+          <i class="zmdi zmdi-edit"></i>
+          <span class="showAt480">Edit</span>
+        </a>
+      </div>
+    </li>
+  <% end %>
+</ul>

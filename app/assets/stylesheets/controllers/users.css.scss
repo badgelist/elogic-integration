@@ -2,21 +2,23 @@
 
 #==========================================================================================================================================#
   
-  ELOGIC INTEGRATION SERVER
-
-  Base application style sheet.
+  USERS CONTROLLER STYLES
   
 #==========================================================================================================================================#
 
 */
 
-/* === SASS VARIABLES === */
+@import 'shared/forms';
 
-  @import 'base/variables';
+/* === BASE STYLES === */
 
-/* === STYLES === */
-
-  @import 'base/typography';
-  @import 'base/helpers';
-  @import 'base/layout';
-  @import 'base/buttons';
+  body {
+    background: $grey-100;
+  }
+    #content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+      #page-header {
+        margin: 1rem 1rem 2rem 1rem;
+      }

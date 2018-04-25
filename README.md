@@ -10,6 +10,16 @@ This application is a work-in-progress. It is a dockerized Rails app with a MySQ
 - `docker exec -it elogicintegration_app_1 bash` brings up a bash terminal where you can use `rails c` to open a rails console or run any other commands (ex: `bundle exec rake db:migrate`)
 - `docker stop` stops the app containers from running
 
+### Creating the first user ###
+
+Note that there are no user permissions levels included in this app. All users are admins. To get started you will need to create the first admin manually by running `docker-compose up -d` then `docker exec -it elogicintegration_app_1 bash` then `rails c` to bring up a rails console. Then you'll be able to create a user with the following rails command:
+
+```ruby
+User.create(email: 'test@example.com', password: 'abc123', name: 'First Admin User')
+```
+
+Note that there is no email validation. The only emails sent out by this server will be the password reset emails.
+
 ## Docker setup in development ##
 
 Create a `.env` file in the root to store environment variables.
@@ -213,4 +223,5 @@ root_url=https://abc.yourdomain.com # dev value = http://localhost
 MYSQL_PASSWORD=database_root_password
 from_email=knowledgestreem@gmail.com
 gmail_password=gmail_app_password # set this to use gmail smtp, notes: here >> http://guides.rubyonrails.org/action_mailer_basics.html#action-mailer-configuration-for-gmail
+admin_email=test@example.com # Displayed on signin page
 ```

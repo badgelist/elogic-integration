@@ -1,9 +1,24 @@
 <div class="text-field">
+  <%= form.label :name %>
+  <%= form.text_field :name, type: 'text' %>
+</div>
+
+<div class="text-field">
   <%= form.label :email %>
   <%= form.text_field :email, type: 'email' %>
 </div>
 
 <div class="password-field">
   <%= form.label :password %>
-  <%= form.password_field :password %>
+  
+  <div class="wrapper">
+    <%= form.password_field :password, type: 'text' %>
+    <p>
+      <% if @user.new_record?  %>
+        The user will <strong>not</strong> be notified by email, so please record the password and notify the user manually.
+      <% else %>
+        Setting this field will change the user's password. Leaving it blank will leave the password unchanged.
+      <% end %>
+    </p>
+  </div>
 </div>

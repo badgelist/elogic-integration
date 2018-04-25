@@ -2,21 +2,26 @@
 
 #==========================================================================================================================================#
   
-  ELOGIC INTEGRATION SERVER
+  HELPER STYLES
 
-  Base application style sheet.
+  This stores misc helper classes
   
 #==========================================================================================================================================#
 
 */
 
-/* === SASS VARIABLES === */
+img.round {
+  border-radius: 100em;
+}
 
-  @import 'base/variables';
+@media(max-width: 479px) {
+  .showAt480 {
+    display: none;
+  }
+}
 
-/* === STYLES === */
-
-  @import 'base/typography';
-  @import 'base/helpers';
-  @import 'base/layout';
-  @import 'base/buttons';
+@media(max-width: 839px) {
+  .showAt840 {
+    display: none;
+  }
+}

@@ -1,0 +1,44 @@
+<% 
+  provide(:window_title, "Modify User - #{@user.name}") 
+  provide(:wrap_with_container, true) 
+%>
+
+<div class="panel user wide">
+
+  <div class="header">
+    <div class="title">
+      <i class="zmdi zmdi-account"></i>
+      Modify User
+    </div>
+  </div>
+  
+  <div class="body">
+    <%= form_for @user do |form| %>
+
+      <%= render partial: '/users/form', object: form %>
+
+      <div class="footer">
+        <%= link_to 'Discard changes', users_path, class: 'button large borderless transparent' %>
+        <%= form.submit class: 'button large transparent' %>
+      </div>
+
+    <% end %>
+  </div>
+
+  <div class="footer">
+    <ul class="links">
+      <li class="label">
+        Other Actions
+      </li>
+      <li>
+        <% if @user == current_user %>
+          <em>Deletion disabled for current user<em>
+        <% else %>
+          <%= link_to '<i class="zmdi zmdi-delete"></i> Delete user'.html_safe, user_path(@user), method: :delete, 
+            data: { confirm: 'Are you sure you want to permanently delete this admin user account?' } %>
+        <% end %>
+      </li>
+    </div>
+  </div>
+
+</div>

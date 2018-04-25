@@ -1,2 +1,29 @@
-<h1>Root#home</h1>
-<p>Find me in app/views/root/home.html.erb</p>
+<% 
+  provide(:window_title, 'Home')
+  provide(:wrap_with_container, true)
+%>
+
+<h1><%= APP_NAME %></h1>
+
+<ul class="nav-list">
+  <li>
+    <a href="#">
+      <div class="icon">
+        <i class="zmdi zmdi-settings"></i>
+      </div>
+      <div class="text">
+        eLogic Integration Settings
+      </div>
+    </a>
+  </li>
+  <li>
+    <a href="<%= users_path %>">
+      <div class="icon">
+        <i class="zmdi zmdi-assignment-account"></i>
+      </div>
+      <div class="text">
+        Manage Server Admin Users
+      </div>
+    </a>
+  </li>
+</ul>
