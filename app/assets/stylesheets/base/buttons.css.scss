@@ -1,0 +1,243 @@
+/*
+
+#==========================================================================================================================================#
+  
+  BUTTON STYLES
+  
+#==========================================================================================================================================#
+
+*/
+
+.button {
+  display: inline-block;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0.4em 1.35em;
+  border-radius: 500em;
+
+  background: radial-gradient(circle at 60% 40%, $grey-50, $grey-200);
+  border: 1.5px solid $grey-600;
+  color: $grey-600;
+
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.button:hover, .button:focus {
+  background: radial-gradient(circle at 60% 40%, $grey-50, $grey-300);
+  color: $grey-700;
+}
+.button.small {
+  font-size: 0.7em;
+  padding: 0.4em 1.1em;
+}
+.button.large {
+  font-size: 0.9em;
+  padding: 0.6em 1.5em;
+}
+.button.jumbo {
+  font-size: 1em;
+  padding: 0.8em 1.8em;
+}
+.button[disabled] {
+  opacity: 0.25;
+}
+.button.block {
+  display: block;
+}
+.button.transparent {
+  background: none !important;
+}
+.button.borderless {
+  border-color: transparent !important;
+}
+.button.narrow {
+  padding-left: 0.5em !important;
+  padding-right: 0.5em !important;
+  min-width: unset !important;
+}
+.button.raised {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+              0 1px 18px 0 rgba(0, 0, 0, 0.12),
+              0 3px 5px -1px rgba(0, 0, 0, 0.4);
+}
+.button.raised:hover, .button.raised:focus {
+  box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12),
+              0 5px 5px -3px rgba(0, 0, 0, 0.4);
+}
+.button.whiteText {
+  color: white !important;
+}
+.button.red {
+  background: radial-gradient(circle at 60% 40%, $red-500, $red-600);
+  border-color: $red-100;
+  color: $red-100;
+}
+  .button.red:hover, .button.red:focus {
+    background: radial-gradient(circle at 60% 40%, $red-400, $red-700);
+    color: white;
+  }
+.button.pink {
+  background: radial-gradient(circle at 60% 40%, $pink-500, $pink-600);
+  border-color: $pink-100;
+  color: $pink-100;
+}
+  .button.pink:hover, .button.pink:focus {
+    background: radial-gradient(circle at 60% 40%, $pink-400, $pink-700);
+    color: white;
+  }
+.button.purple {
+  background: radial-gradient(circle at 60% 40%, $purple-500, $purple-600);
+  border-color: $purple-100;
+  color: $purple-100;
+}
+  .button.purple:hover, .button.purple:focus {
+    background: radial-gradient(circle at 60% 40%, $purple-400, $purple-700);
+    color: white;
+  }
+.button.deep-purple {
+  background: radial-gradient(circle at 60% 40%, $deep-purple-500, $deep-purple-600);
+  border-color: $deep-purple-100;
+  color: $deep-purple-100;
+}
+  .button.deep-purple:hover, .button.deep-purple:focus {
+    background: radial-gradient(circle at 60% 40%, $deep-purple-400, $deep-purple-700);
+    color: white;
+  }
+.button.indigo {
+  background: radial-gradient(circle at 60% 40%, $indigo-500, $indigo-600);
+  border-color: $indigo-100;
+  color: $indigo-100;
+}
+  .button.indigo:hover, .button.indigo:focus {
+    background: radial-gradient(circle at 60% 40%, $indigo-400, $indigo-700);
+    color: white;
+  }
+.button.blue {
+  background: radial-gradient(circle at 60% 40%, $blue-500, $blue-600);
+  border-color: $blue-100;
+  color: $blue-100;
+}
+  .button.blue:hover, .button.blue:focus {
+    background: radial-gradient(circle at 60% 40%, $blue-400, $blue-700);
+    color: white;
+  }
+.button.light-blue {
+  background: radial-gradient(circle at 60% 40%, $light-blue-500, $light-blue-600);
+  border-color: $light-blue-100;
+  color: $light-blue-100;
+}
+  .button.light-blue:hover, .button.light-blue:focus {
+    background: radial-gradient(circle at 60% 40%, $light-blue-400, $light-blue-700);
+    color: white;
+  }
+.button.cyan {
+  background: radial-gradient(circle at 60% 40%, $cyan-500, $cyan-600);
+  border-color: $cyan-100;
+  color: $cyan-100;
+}
+  .button.cyan:hover, .button.cyan:focus {
+    background: radial-gradient(circle at 60% 40%, $cyan-400, $cyan-700);
+    color: white;
+  }
+.button.teal {
+  background: radial-gradient(circle at 60% 40%, $teal-500, $teal-600);
+  border-color: $teal-100;
+  color: $teal-100;
+}
+  .button.teal:hover, .button.teal:focus {
+    background: radial-gradient(circle at 60% 40%, $teal-400, $teal-700);
+    color: white;
+  }
+.button.green {
+  background: radial-gradient(circle at 60% 40%, $green-500, $green-600);
+  border-color: $green-100;
+  color: $green-100;
+}
+  .button.green:hover, .button.green:focus {
+    background: radial-gradient(circle at 60% 40%, $green-400, $green-700);
+    color: white;
+  }
+.button.light-green {
+  background: radial-gradient(circle at 60% 40%, $light-green-500, $light-green-600);
+  border-color: $light-green-100;
+  color: $light-green-100;
+}
+  .button.light-green:hover, .button.light-green:focus {
+    background: radial-gradient(circle at 60% 40%, $light-green-400, $light-green-700);
+    color: white;
+  }
+.button.lime {
+  background: radial-gradient(circle at 60% 40%, $lime-500, $lime-600);
+  border-color: $lime-100;
+  color: $lime-100;
+}
+  .button.lime:hover, .button.lime:focus {
+    background: radial-gradient(circle at 60% 40%, $lime-400, $lime-700);
+    color: white;
+  }
+.button.yellow {
+  background: radial-gradient(circle at 60% 40%, $yellow-500, $yellow-600);
+  border-color: $yellow-100;
+  color: $yellow-100;
+}
+  .button.yellow:hover, .button.yellow:focus {
+    background: radial-gradient(circle at 60% 40%, $yellow-400, $yellow-700);
+    color: white;
+  }
+.button.amber {
+  background: radial-gradient(circle at 60% 40%, $amber-500, $amber-600);
+  border-color: $amber-100;
+  color: $amber-100;
+}
+  .button.amber:hover, .button.amber:focus {
+    background: radial-gradient(circle at 60% 40%, $amber-400, $amber-700);
+    color: white;
+  }
+.button.orange {
+  background: radial-gradient(circle at 60% 40%, $orange-500, $orange-600);
+  border-color: $orange-100;
+  color: $orange-100;
+}
+  .button.orange:hover, .button.orange:focus {
+    background: radial-gradient(circle at 60% 40%, $orange-400, $orange-700);
+    color: white;
+  }
+.button.deep-orange {
+  background: radial-gradient(circle at 60% 40%, $deep-orange-500, $deep-orange-600);
+  border-color: $deep-orange-100;
+  color: $deep-orange-100;
+}
+  .button.deep-orange:hover, .button.deep-orange:focus {
+    background: radial-gradient(circle at 60% 40%, $deep-orange-400, $deep-orange-700);
+    color: white;
+  }
+.button.brown {
+  background: radial-gradient(circle at 60% 40%, $brown-500, $brown-600);
+  border-color: $brown-100;
+  color: $brown-100;
+}
+  .button.brown:hover, .button.brown:focus {
+    background: radial-gradient(circle at 60% 40%, $brown-400, $brown-700);
+    color: white;
+  }
+.button.grey {
+  background: radial-gradient(circle at 60% 40%, $grey-500, $grey-600);
+  border-color: $grey-100;
+  color: $grey-100;
+}
+  .button.grey:hover, .button.grey:focus {
+    background: radial-gradient(circle at 60% 40%, $grey-400, $grey-700);
+    color: white;
+  }
+.button.blue-grey {
+  background: radial-gradient(circle at 60% 40%, $blue-grey-500, $blue-grey-600);
+  border-color: $blue-grey-100;
+  color: $blue-grey-100;
+}
+  .button.blue-grey:hover, .button.blue-grey:focus {
+    background: radial-gradient(circle at 60% 40%, $blue-grey-400, $blue-grey-700);
+    color: white;
+  }

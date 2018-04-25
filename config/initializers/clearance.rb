@@ -1,4 +1,6 @@
 Clearance.configure do |config|
+    
+  config.allow_sign_up = false # since all users have the same access we need to manually create new users
 
   config.cookie_domain = ENV['root_domain']
   config.cookie_expiration = lambda { |cookies| 1.year.from_now.utc }

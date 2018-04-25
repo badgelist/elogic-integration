@@ -1,6 +1,30 @@
-<div id="clearance" class="sign-in">
-  <h2><%= t(".title") %></h2>
+<% 
+  provide(:window_title, 'Sign in') 
+%>
 
-  <%= render partial: '/sessions/form' %>
+<div id="clearance" class="panel sign-in">
+
+  <div class="header">
+    <div id="app-logo"><%= image_tag 'icon.png' %></div>
+    <div id="app-name"><%= APP_NAME %></div>
+  </div>
+  
+  <div class="body">
+    <h2><%= t('.title') %></h2>
+    <p>
+      Please note that the integration server has a different user list than the core Badge List platform.
+      Contact <%= ENV['admin_email'] || 'an administrator' %> to be setup with an account.
+    </p>
+    
+    <%= render partial: '/sessions/form' %>
+  </div>
+
+  <div class="footer">
+    <ul class="links">
+      <li>
+        <%= link_to ('<i class="zmdi zmdi-help"></i> ' + t('.forgot_password')).html_safe, new_password_path %>
+      </li>
+    </div>
+  </div>
 
 </div>

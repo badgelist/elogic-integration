@@ -14,3 +14,34 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+// #=== CONSTANTS ====#
+
+let FLASH_CLOSE_TIMEOUT = 5000; // in milliseconds
+
+// #=== PAGE LOAD ====#
+
+document.addEventListener("DOMContentLoaded", function(event) {
+
+  // Automatically close flash messages after a fixed delay
+  if (document.getElementById('flash-panel')) {
+    setTimeout(function() {
+      document.querySelectorAll('#flash-panel .flash .action').forEach(function(flashActionElement) {
+        closeFlash(flashActionElement);
+      });
+    }, FLASH_CLOSE_TIMEOUT);
+  }
+
+});
+
+
+// #=== FLASH ====#
+
+function closeFlash(elementWithinFlash) {
+  let flashElement = elementWithinFlash.closest('.flash');
+
+  if (flashElement)
+    flashElement.remove();
+
+  return false;
+}

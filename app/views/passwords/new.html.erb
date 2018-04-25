@@ -1,16 +1,36 @@
-<div id="clearance" class="password-reset">
-  <h2><%= t(".title") %></h2>
+<% 
+  provide(:window_title, 'Reset password') 
+%>
 
-  <p><%= t(".description") %></p>
+<div id="clearance" class="panel password-reset">
 
-  <%= form_for :password, url: passwords_path do |form| %>
-    <div class="text-field">
-      <%= form.label :email %>
-      <%= form.text_field :email, type: 'email' %>
+  <div class="header">
+    <div id="app-name"><%= t('.title') %></div>
+  </div>
+  
+  <div class="body">
+    <p><%= t('.description') %></p>
+    
+    <%= form_for :password, url: passwords_path do |form| %>
+
+      <div class="text-field">
+        <%= form.label :email %>
+        <%= form.text_field :email, type: 'email', autofocus: true %>
+      </div>
+
+      <div class="footer">
+        <%= form.submit class: 'button jumbo raised teal' %>
+      </div>
+
+    <% end %>
+  </div>
+
+  <div class="footer">
+    <ul class="links">
+      <li>
+        <%= link_to '<i class="zmdi zmdi-arrow-left"></i> Return to sign in'.html_safe, sign_in_path %>
+      </li>
     </div>
+  </div>
 
-    <div class="submit-field">
-      <%= form.submit %>
-    </div>
-  <% end %>
 </div>
