@@ -19,12 +19,12 @@ RSpec.feature "Visitor resets password" do
     expect(current_path).to eq new_password_path
   end
 
-  # scenario "with valid email" do
-  #   user = user_with_reset_password
+  scenario "with valid email" do
+    user = user_with_reset_password
 
-  #   expect_page_to_display_change_password_message
-  #   expect_reset_notification_to_be_sent_to user
-  # end
+    expect_page_to_display_change_password_message
+    expect_reset_notification_to_be_sent_to user
+  end
 
   scenario "with non-user account" do
     reset_password_for "unknown.email@example.com"

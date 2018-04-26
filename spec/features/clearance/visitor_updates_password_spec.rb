@@ -9,23 +9,23 @@ RSpec.feature "Visitor updates password" do
     expect_user_to_be_signed_in
   end
 
-  # scenario "signs in with new password" do
-  #   user = user_with_reset_password
-  #   update_password user, "newpassword"
-  #   sign_out
-  #   sign_in_with user.email, "newpassword"
+  scenario "signs in with new password" do
+    user = user_with_reset_password
+    update_password user, "newpassword"
+    sign_out
+    sign_in_with user.email, "newpassword"
 
-  #   expect_user_to_be_signed_in
-  # end
+    expect_user_to_be_signed_in
+  end
 
-  # scenario "tries with a blank password" do
-  #   user = user_with_reset_password
-  #   visit_password_reset_page_for user
-  #   change_password_to ""
+  scenario "tries with a blank password" do
+    user = user_with_reset_password
+    visit_password_reset_page_for user
+    change_password_to ""
 
-  #   expect(page).to have_content I18n.t("flashes.failure_after_update")
-  #   expect_user_to_be_signed_out
-  # end
+    expect(page).to have_content I18n.t("flashes.failure_after_update")
+    # expect_user_to_be_signed_out
+  end
 
   private
 

@@ -117,6 +117,12 @@
 
 /* === FORM STYLES === */
 
+  form h3 {
+    margin: 1.5rem 0;
+  }
+  form h3:first-of-type {
+    margin-top: 0; 
+  }
   form div[class$=field] {
     display: flex;
     align-items: flex-start;
@@ -131,8 +137,9 @@
       color: $grey-600;
       font-weight: 700;
     }
-    form div[class$=field] input[type=text], 
-    form div[class$=field] input[type=email], 
+    form div[class$=field] input[type=text],
+    form div[class$=field] input[type=email],
+    form div[class$=field] input[type=number],
     form div[class$=field] input[type=password] {
       flex: 1 1 auto;
       font-size: 1rem;
@@ -142,6 +149,10 @@
       border: 1px solid $grey-300;
       background: $grey-50;
       border-radius: 2px;
+    }
+    form div[class$=field] input[type=number] {
+      flex: 0 0 6em;
+      max-width: 6em;
     }
     form div[class$=field] > .wrapper {
       display: flex;
@@ -153,6 +164,52 @@
         font-weight: 200;
       }
   form > .footer {
+    margin: 1.6rem 0 0 0;
+    text-align: right;
+  }
+    form > .footer > .button {
+      margin: 0 0.5rem;
+    }
+    form > .footer > .button:first-child {
+      margin-left: 0;
+    }
+    form > .footer > .button:last-child {
+      margin-right: 0;
+    }
+
+/* === DISPLAY ONLY FORM STYLES === */
+
+  .view-form h3 {
+    margin: 1.5rem 0;
+  }
+  .view-form h3:first-of-type {
+    margin-top: 0; 
+  }
+    .view-form div[class$=field] {
+      display: flex;
+      align-items: flex-start;
+      margin: 1rem 0;
+    }
+      .view-form div[class$=field] > label {
+        flex: 0 0 auto;
+        
+        margin: 0.2rem 1rem 0 0;
+        line-height: 1.4em;
+
+        color: $grey-600;
+        font-weight: 700;
+      }
+      .view-form div[class$=field] > .value {
+        flex: 1 1 auto;
+        font-size: 1rem;
+
+        padding: 0.5em 0.7em;
+      }
+      .view-form div[class$=field] > .value.blank {
+        color: $grey-500;
+        font-weight: 200;
+      }
+  .view-form > .footer {
     margin: 1.6rem 0 0 0;
     text-align: right;
   }

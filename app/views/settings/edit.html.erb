@@ -1,0 +1,40 @@
+<% 
+  provide(:window_title, 'Modify Settings')
+  provide(:wrap_with_container, true)
+%>
+
+<div class="panel settings wide">
+
+  <div class="header">
+    <div class="title">
+      <i class="zmdi zmdi-settings"></i>
+      Modify Integration Settings
+    </div>
+  </div>
+  
+  <div class="body">
+    <%= form_tag settings_path, method: :put do %>
+      <% @sections.each do |section_item| %>
+        
+        <h3><%= section_item[:label] %></h3>
+
+        <% section_item[:settings].each do |setting_item| %>
+          <div class="<%= setting_item[:type] %>-field">
+            <%= label_tag setting_item[:key], setting_item[:label] %>
+            <input id="<%= setting_item[:key] %>" name="setting[<%= setting_item[:key] %>]" type="<%= setting_item[:type] %>" 
+              value="<%= setting_item[:value] %>">
+          </div>
+        <% end %>
+
+      <% end %>
+
+      <div class="footer">
+        <a href="<%= settings_path %>" class="button large transparent">
+          Discard changes
+        </a>
+        <%= submit_tag 'Save changes', class: 'button large raised teal' %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

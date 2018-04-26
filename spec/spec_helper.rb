@@ -19,3 +19,10 @@ RSpec.configure do |config|
   # config.profile_examples = 10
 
 end
+
+def manually_sign_in_user(user)
+  visit sign_in_path
+  fill_in 'Email', with: user.email
+  fill_in 'Password', with: 'validPassword123'
+  click_button 'Sign in'
+end

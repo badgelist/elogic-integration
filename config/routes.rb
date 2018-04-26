@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  root :to => 'root#home'
-
   #=== KUBERNETES ROUTES ===#
     
   get '/_health', to: 'application#health'
@@ -21,5 +19,11 @@ Rails.application.routes.draw do
   delete '/sign_out' => 'clearance/sessions#destroy', as: 'sign_out'
 
   #=== APP ROUTES ===#
+
+  root :to => 'root#home'
+
+  get '/settings' => 'settings#show', as: 'settings'
+  get '/settings/edit' => 'settings#edit', as: 'edit_settings'
+  put '/settings' => 'settings#update'
 
 end

@@ -1,0 +1,14 @@
+# config/app.yml for rails-settings-cached
+defaults: &defaults
+  elogic_wsdl_url: ~
+  elogic_api_token: ~
+  elogic_user_query_frequency: 60
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -1,0 +1,42 @@
+<% 
+  provide(:window_title, 'Settings')
+  provide(:wrap_with_container, true)
+%>
+
+<div class="panel settings wide">
+
+  <div class="header">
+    <div class="title">
+      <i class="zmdi zmdi-settings"></i>
+      Integration Settings
+    </div>
+  </div>
+  
+  <div class="body">
+    <div class="view-form">
+      <% @sections.each do |section_item| %>
+        <h3><%= section_item[:label] %></h3>
+
+        <% section_item[:settings].each do |setting_item| %>
+
+          <div class="<%= setting_item[:type] %>-field">
+            <label for="<%= setting_item[:key] %>">
+              <%= setting_item[:label] %>
+            </label>
+            <div id="<%= setting_item[:key] %>" class="value <%= setting_item[:value].blank? ? 'blank' : '' %>">
+              <%= setting_item[:value].blank? ? '[blank]' : setting_item[:value] %>
+            </div>
+          </div>
+
+        <% end %>
+      <% end %>
+
+      <div class="footer">
+        <a href="<%= edit_settings_path %>" class="button large transparent">
+          <i class="zmdi zmdi-edit"></i> Modify Settings
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>

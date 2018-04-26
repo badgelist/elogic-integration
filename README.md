@@ -7,6 +7,7 @@ This application is a work-in-progress. It is a dockerized Rails app with a MySQ
 - `docker build` rebuilds the docker image
 - `docker-compose up -d` runs the app (it will be available at `http://0.0.0.0` at the default web port 80)
 - `docker ps` lists the running processes
+- To run tests, bring up a one off app container in test mode by running `docker-compose run -e RAILS_ENV=test app bash`. That will open a terminal in the one off test container. Then you can run `rspec spec` to execute all tests.
 - `docker exec -it elogicintegration_app_1 bash` brings up a bash terminal where you can use `rails c` to open a rails console or run any other commands (ex: `bundle exec rake db:migrate`)
 - `docker stop` stops the app containers from running
 
