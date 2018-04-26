@@ -10,13 +10,13 @@ spec:
     metadata:
       labels:
         name: web
-      forceUpdateKey: a0001 # this is not used by anything, you can change it in order to force a rollout when change env values
+        forceUpdateKey: a0001 # this is not used by anything, you can change it in order to force a rollout when change env values
     spec:
       nodeSelector:
         cloud.google.com/gke-nodepool: default-pool
       containers:
         - name: web
-          image: us.gcr.io/badge-list/elogicintegration_app:v4
+          image: us.gcr.io/badge-list/elogicintegration_app:v5
           ports:
             - containerPort: 3000
           livenessProbe:
@@ -32,6 +32,21 @@ spec:
             initialDelaySeconds: 30
             timeoutSeconds: 1
           env:
+            - name: app_name
+              value: SAE eLogic Integration Server
+            - name: root_domain
+              value: sae-elogic.badgelist.group
+            - name: root_url
+              value: http://sae-elogic.badgelist.group
+            - name: from_email
+              value: knowledgestreem@gmail.com
+            - name: admin_email
+              value: admin@sae-elogic.badgelist.group
+            - name: gmail_password
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: gmail_password
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
@@ -42,3 +57,5 @@ spec:
                 secretKeyRef:
                   name: app-secrets
                   key: mysql_password
+            - name: RAILS_SERVE_STATIC_FILES
+              value: 'true' # Note: Use a CDN instead if planning on supporting a significant number of admin users.

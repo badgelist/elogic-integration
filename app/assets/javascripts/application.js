@@ -17,7 +17,7 @@
 
 // #=== CONSTANTS ====#
 
-let FLASH_CLOSE_TIMEOUT = 5000; // in milliseconds
+var FLASH_CLOSE_TIMEOUT = 5000; // in milliseconds
 
 // #=== PAGE LOAD ====#
 
@@ -41,7 +41,7 @@ $(document).on('page:load', function(){
 // #=== FLASH ====#
 
 function closeFlash(elementWithinFlash) {
-  let flashElement = elementWithinFlash.closest('.flash');
+  var flashElement = elementWithinFlash.closest('.flash');
 
   if (flashElement)
     flashElement.remove();

@@ -105,9 +105,9 @@ With that done you can move on to the actual deployment. Use the commands below 
 # Rebuild the docker image file
 docker build -t elogicintegration_app -f Dockerfile-production .
 
-# Tag it and push it to google private repository
-docker tag elogicintegration_app us.gcr.io/badge-list/elogicintegration_app:v42
-gcloud docker -- push us.gcr.io/badge-list/elogicintegration_app:v42
+# Tag it with the NEW verison tag and push it to google private repository
+docker tag elogicintegration_app us.gcr.io/badge-list/elogicintegration_app:v43
+gcloud docker -- push us.gcr.io/badge-list/elogicintegration_app:v43
 
 # Execute the new version deployment script with the NEW version tag as a parameter
 scripts/deploy-new-version.sh v43
