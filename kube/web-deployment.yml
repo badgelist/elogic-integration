@@ -5,11 +5,12 @@ metadata:
   labels:
     name: web
 spec:
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
         name: web
+      forceUpdateKey: a0001 # this is not used by anything, you can change it in order to force a rollout when change env values
     spec:
       nodeSelector:
         cloud.google.com/gke-nodepool: default-pool
