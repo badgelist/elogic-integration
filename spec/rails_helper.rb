@@ -11,6 +11,7 @@ require 'rspec/rails'
 require 'capybara/rspec'
 require 'shoulda/matchers'
 require 'factory_bot'
+require 'clearance/rspec'
 
 # Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
