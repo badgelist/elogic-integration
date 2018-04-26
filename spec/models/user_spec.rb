@@ -12,6 +12,8 @@ RSpec.describe User, type: :model do
 
     it { expect(user).to have_attribute :name }
     it { expect(user).to have_attribute :email }
+    it { expect(user).to respond_to :gravatar_url }
+    it { expect(user.gravatar_url).to include 'https://secure.gravatar.com/avatar' }
 
   end
 

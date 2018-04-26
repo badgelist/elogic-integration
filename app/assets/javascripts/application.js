@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 });
 
+$(document).on('page:load', function(){
+    $.rails.refreshCSRFTokens();
+});
 
 // #=== FLASH ====#
 

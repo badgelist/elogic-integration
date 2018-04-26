@@ -1,6 +1,8 @@
 # Refer to https://github.com/thoughtbot/clearance/blob/master/app/controllers/clearance/users_controller.rb for underlying controller
 class UsersController < Clearance::UsersController
 
+  before_action :require_login
+
   #=== CONSTANTS ===#
 
   PERMITTED_PARAMS = [:name, :email, :password]

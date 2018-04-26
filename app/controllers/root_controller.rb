@@ -1,7 +1,8 @@
 class RootController < ApplicationController
 
-  def home
+  before_action :require_login
 
+  def home
   end
 
 end

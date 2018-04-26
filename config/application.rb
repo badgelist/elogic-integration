@@ -16,6 +16,8 @@ module ElogicIntegration
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
+    config.action_mailer.default_url_options = { :host => ENV['root_domain'] }
+    
     # Add the base smtp settings for gmail if the gmail_password environment variable is set
     if ENV['gmail_password'].present?
       config.action_mailer.delivery_method = :smtp # this gets overridden in test.rb
